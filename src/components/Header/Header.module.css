@@ -1,0 +1,23 @@
+.header {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.task_input {
+  border: none;
+  padding: 5px;
+}
+.task_input:focus-within {
+  outline: none;
+}
+.addBtn {
+  font-size: 0.8rem;
+  cursor: pointer;
+  /* background-color: #fff; */
+  border: 1px solid #9311de85;
+  padding: 3px 6px;
+  /* transition: all .7s; */
+}
