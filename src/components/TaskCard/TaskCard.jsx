@@ -16,7 +16,8 @@ const TaskCard = () => {
       </div>
       <div className={classes.btns}>
         <button onClick={() => taskDoneHandler(task.id)} className={classes.done}>Done</button>
-        <button onClick={() => removeTaskFromList(task.id)} className={classes.delete}>Delete</button>
+        <button taskID={task.id} onClick={showModal} className={classes.delete}>Delete</button>
+        {/* <button onClick={() => removeTaskFromList(task.id)} className={classes.delete}>Delete</button> */}
       </div>
     </li>
   ));

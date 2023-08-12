@@ -14,12 +14,12 @@ const Backdrop = () => {
 const ModalOverlay = (props) => {
   const { removeTaskFromList, hideModal } = useToDoList();
   return (
-    <div className={classes.overlay}>
+    <div className={classes.modal}>
       <div className={classes.content}>
-        <p>Are you sure to delete!?</p>
+        <p className={classes.message}>Are you sure to remove!?</p>
         <div className={classes.btns}>
-          <button onClick={removeTaskFromList} className={classes.delete}>Okay</button>
-          <button onClick={hideModal} className={classes.done}>No</button>
+          <button onClick={removeTaskFromList} className={classes.delete}>remove</button>
+          <button onClick={hideModal} className={classes.done}>cansel</button>
         </div>
       </div>
     </div>

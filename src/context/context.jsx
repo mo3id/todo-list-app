@@ -14,6 +14,7 @@ const ToDoListProvider = ({ children }) => {
 
   const showModal = () => {
     setModalIsShow(true)
+    console.log(modalIsShow)
   }
 
   const hideModal = () => {
@@ -61,9 +62,7 @@ const ToDoListProvider = ({ children }) => {
   )
 }
 
-
 export default ToDoListProvider;
-
 
 export const useToDoList = () => {
   return useContext(ToDoListContext);
