@@ -1,27 +1,33 @@
 import React, { useState } from 'react'
 import classes from './Header.module.css';
 import { useToDoList } from '../../context/context';
+import InputField from '../InputField/InputField';
 
 const Header = () => {
 
-  const { createTask,hideModalHandler,showModalHandler,modalIsShow } = useToDoList()
-  
-  const [text, setText] = useState('');
-  
-  const addTaskHandler = ()=> {
-    setText("")
+  const { createTask, hideModalHandler, showModalHandler, modalIsShow } = useToDoList()
+
+  const [textTitle, setTextTitle] = useState('');
+  const [textDisc, setTextDisc] = useState('');
+
+  const addTaskHandler = () => {
+    setTextTitle("");
+    setTextDisc("");
     createTask({
-      id:Math.random(),
-      taskText :text,
-      isComplete:false,
+      id: Math.random(),
+      taskTextTitle: textTitle,
+      taskTextdisc: textDisc,
+      isComplete: false,
     })
   }
 
   return (
     <header className={classes.header}>
-      <label htmlFor='task_input' className={classes['label_input']}>Enter your task </label>
-      <input id='task_input' className={classes['task_input']} type='text' value={text} onChange={(e) => setText(e.target.value)} />
-      <button className={classes.addBtn} onClick= {addTaskHandler}>+ Add</button>
+      <div className={classes.inputs}>
+        <InputField id='task_input' label={'Task title'} type='text' value={textTitle} onChange={(e) => setTextTitle(e.target.value)} />
+        <InputField id='task_input' label={'Task discripion'} type='text' value={textDisc} onChange={(e) => setTextDisc(e.target.value)} />
+        <button className={classes.addBtn} onClick={addTaskHandler}>+ Add</button>
+      </div>
     </header>
   )
 }

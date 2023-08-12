@@ -21,3 +21,9 @@
   padding: 3px 6px;
   /* transition: all .7s; */
 }
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

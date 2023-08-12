@@ -49,6 +49,10 @@
   background-color: #e73f33;
 }
 
+.taskDetails p:last-child {
+  font-size: .8rem;
+}
+
 @media only screen and (max-width: 480px) {
   .task {
     flex-direction: column;

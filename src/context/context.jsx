@@ -40,7 +40,7 @@ const ToDoListProvider = ({ children }) => {
   }, [tasks])
 
   const createTask = (task) => {
-    task.taskText.length > 3 ? setTasks([task, ...tasks]) : alert('enter valed task more than 3 letters')
+    task.taskTextTitle.length > 3 || task.taskTextdisc.length > 3 ? setTasks([task, ...tasks]) : alert('enter valed task more than 3 letters')
     console.log(task);
   }
 
