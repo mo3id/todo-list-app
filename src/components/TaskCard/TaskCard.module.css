@@ -31,12 +31,25 @@
   padding: 0;
 }
 
-.btns {
+.firstBtns {
   display: flex;
-  gap: 12px;
+  gap: 6px;
 }
 
-.btns button {
+.btns,
+.btnsEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.btnsEdit {
+  margin-top: 1rem;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.btns button,
+.btnsEdit button {
   color: #fff;
   font-size: 0.7rem;
   cursor: pointer;
@@ -49,8 +62,13 @@
   background-color: #e73f33;
 }
 
+.edit {
+  background-color: #a60aeb;
+}
+
 .taskDetails p:last-child {
-  font-size: .8rem;
+  font-size: 0.8rem;
+  color: #000000d6;
 }
 
 @media only screen and (max-width: 480px) {

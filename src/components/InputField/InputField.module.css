@@ -1,5 +1,6 @@
 .task_input {
   border: none;
+  border-bottom: 1px solid #9752cb;
   padding: 5px;
 }
 .task_input:focus-within {

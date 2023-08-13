@@ -5,7 +5,7 @@ import InputField from '../InputField/InputField';
 
 const Header = () => {
 
-  const { createTask, hideModalHandler, showModalHandler, modalIsShow } = useToDoList()
+  const { createTask, hideModalHandler, showModalHandler, modalToRemoveIsShow,modalToEditIsShow } = useToDoList()
 
   const [textTitle, setTextTitle] = useState('');
   const [textDisc, setTextDisc] = useState('');
@@ -25,7 +25,7 @@ const Header = () => {
     <header className={classes.header}>
       <div className={classes.inputs}>
         <InputField id='task_input' label={'Task title'} type='text' value={textTitle} onChange={(e) => setTextTitle(e.target.value)} />
-        <InputField id='task_input' label={'Task discripion'} type='text' value={textDisc} onChange={(e) => setTextDisc(e.target.value)} />
+        <InputField id='task_input' label={'Task discription'} type='text' value={textDisc} onChange={(e) => setTextDisc(e.target.value)} />
         <button className={classes.addBtn} onClick={addTaskHandler}>+ Add</button>
       </div>
     </header>

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-const InitialTasks = localStorage.getItem('tasks-list') ? JSON.parse(localStorage.getItem('tasks-list')) : [];
 
+const InitialTasks = localStorage.getItem('tasks-list') ? JSON.parse(localStorage.getItem('tasks-list')) : [];
 const ToDoListContext = createContext({
 
 });
@@ -10,14 +10,19 @@ const ToDoListProvider = ({ children }) => {
 
   const [tasks, setTasks] = useState(InitialTasks);
 
-  const [modalIsShow, setModalIsShow] = useState(false)
+  const [modalToRemoveIsShow, setmodalToRemoveIsShow] = useState(false);
+  const [modalToEditIsShow, setmodalToEditIsShow] = useState(false);
 
   const [taskId, setTaskId] = useState('');
 
   const showModal = () => {
-    setModalIsShow(true)
-    console.log(modalIsShow)
+    setmodalToRemoveIsShow(true)
+    console.log(modalToRemoveIsShow)
+  }
 
+  const showEditModal = () => {
+    setmodalToEditIsShow(true)
+    console.log(modalToEditIsShow)
   }
 
   const selectedTask = (id)=>{
@@ -25,7 +30,11 @@ const ToDoListProvider = ({ children }) => {
   }
 
   const hideModal = () => {
-    setModalIsShow(false)
+    setmodalToRemoveIsShow(false)
+  }
+
+  const hideEditModal = () => {
+    setmodalToEditIsShow(false)
   }
 
   const taskDoneHandler = (id) => {
@@ -54,14 +63,16 @@ const ToDoListProvider = ({ children }) => {
 
   const removeTaskFromList = () => {
     setTasks(tasks.filter((task) => task.id !== taskId));
-    setModalIsShow(false)
+    setmodalToRemoveIsShow(false)
   };
 
-
-
+  const EditTask = () => {
+    console.log("edit");
+    setmodalToEditIsShow(false);
+  };
 
   return (
-    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalIsShow, hideModal, showModal, selectedTask }}>
+    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalToRemoveIsShow,modalToEditIsShow,hideModal,hideEditModal, showModal,showEditModal, selectedTask,EditTask }}>
 
       {children}
 
