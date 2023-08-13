@@ -1,0 +1,62 @@
+.task {
+  color: #000;
+  background-color: #fff;
+  max-width: 25rem;
+  margin: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border-radius: 5px;
+}
+.task p {
+  margin: 0;
+}
+
+.task-complete {
+  text-decoration: line-through;
+}
+
+.task-notcomplete {
+  text-decoration: none;
+}
+
+.task:last-of-type {
+  margin-bottom: 0;
+}
+
+.taskList {
+  list-style: none;
+  padding: 0;
+}
+
+.btns {
+  display: flex;
+  gap: 12px;
+}
+
+.btns button {
+  color: #fff;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border: 1px solid #723d71;
+}
+.done {
+  background-color: #53ad62;
+}
+.delete {
+  background-color: #e73f33;
+}
+
+.taskDetails p:last-child {
+  font-size: .8rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .task {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}

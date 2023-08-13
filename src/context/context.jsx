@@ -12,9 +12,16 @@ const ToDoListProvider = ({ children }) => {
 
   const [modalIsShow, setModalIsShow] = useState(false)
 
+  const [taskId, setTaskId] = useState('');
+
   const showModal = () => {
     setModalIsShow(true)
     console.log(modalIsShow)
+
+  }
+
+  const selectedTask = (id)=>{
+    setTaskId(id)
   }
 
   const hideModal = () => {
@@ -45,8 +52,8 @@ const ToDoListProvider = ({ children }) => {
     console.log(task);
   }
 
-  const removeTaskFromList = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const removeTaskFromList = () => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
     setModalIsShow(false)
   };
 
@@ -54,7 +61,7 @@ const ToDoListProvider = ({ children }) => {
 
 
   return (
-    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalIsShow, hideModal, showModal }}>
+    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalIsShow, hideModal, showModal, selectedTask }}>
 
       {children}
 

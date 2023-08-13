@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import classes from './TaskCard.module.css'
 import { useToDoList } from '../../context/context';
+import Modal from '../Modal/Modal';
 
 
 const TaskCard = () => {
 
-  const { tasks, removeTaskFromList, taskDoneHandler, showModal } = useToDoList();
+  const { tasks, removeTaskFromList, taskDoneHandler, showModal, modalIsShow, selectedTask } = useToDoList();
+
 
   // className={classes['task-complete']?"":classes['task-complete']}
   const taskList = tasks?.map(task => (
@@ -16,18 +18,24 @@ const TaskCard = () => {
       </div>
       <div className={classes.btns}>
         <button onClick={() => taskDoneHandler(task.id)} className={classes.done}>Done</button>
-        <button taskID={task.id} onClick={showModal} className={classes.delete}>Delete</button>
-        {/* <button onClick={() => removeTaskFromList(task.id)} className={classes.delete}>Delete</button> */}
+        <button onClick={() => {
+          selectedTask(task.id);
+          showModal()
+        }} className={classes.delete}>Delete</button>
+        {/* <button onClick={() => removeTaskFromList(task.id)} className={classes.delete}>E</button> */}
       </div>
     </li>
   ));
 
   return (
-    <section className={classes['task_section']}>
-      <ul className={classes.taskList}>
-        {taskList}
-      </ul>
-    </section>
+    <>
+      {modalIsShow && <Modal />}
+      <section className={classes['task_section']}>
+        <ul className={classes.taskList}>
+          {taskList}
+        </ul>
+      </section>
+    </>
   )
 }
 

@@ -11,14 +11,15 @@ const Backdrop = () => {
   )
 }
 
-const ModalOverlay = (props) => {
+const ModalOverlay = (task) => {
   const { removeTaskFromList, hideModal } = useToDoList();
+
   return (
     <div className={classes.modal}>
       <div className={classes.content}>
         <p className={classes.message}>Are you sure to remove!?</p>
         <div className={classes.btns}>
-          <button onClick={removeTaskFromList} className={classes.delete}>remove</button>
+          <button onClick={() => removeTaskFromList()} className={classes.delete}>remove</button>
           <button onClick={hideModal} className={classes.done}>cansel</button>
         </div>
       </div>
@@ -32,7 +33,7 @@ const Modal = (props) => {
   return (
     <>
       {ReactDOM.createPortal(<Backdrop />, portalElement)}
-      {ReactDOM.createPortal(<ModalOverlay />, portalElement)}
+      {ReactDOM.createPortal(<ModalOverlay/>, portalElement)}
     </>
   )
 }
