@@ -15,6 +15,11 @@ const ToDoListProvider = ({ children }) => {
 
   const [taskId, setTaskId] = useState('');
 
+
+  const getSelectdTask = () => {
+    return tasks.find((task) => task.id === taskId);
+  }
+
   const showModal = () => {
     setmodalToRemoveIsShow(true)
     console.log(modalToRemoveIsShow)
@@ -25,7 +30,7 @@ const ToDoListProvider = ({ children }) => {
     console.log(modalToEditIsShow)
   }
 
-  const selectedTask = (id)=>{
+  const selectedTask = (id) => {
     setTaskId(id)
   }
 
@@ -57,7 +62,7 @@ const ToDoListProvider = ({ children }) => {
   }, [tasks])
 
   const createTask = (task) => {
-    task.taskTextTitle.length > 3 || task.taskTextdisc.length > 3 ? setTasks([task, ...tasks]) : alert('enter valed task more than 3 letters')
+    task.taskTextTitle.length > 3 || task.taskTextdesc.length > 3 ? setTasks([task, ...tasks]) : alert('enter valed task more than 3 letters')
     console.log(task);
   }
 
@@ -72,7 +77,7 @@ const ToDoListProvider = ({ children }) => {
   };
 
   return (
-    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalToRemoveIsShow,modalToEditIsShow,hideModal,hideEditModal, showModal,showEditModal, selectedTask,EditTask }}>
+    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalToRemoveIsShow, modalToEditIsShow, hideModal, hideEditModal, showModal, showEditModal, selectedTask, EditTask, getSelectdTask }}>
 
       {children}
 

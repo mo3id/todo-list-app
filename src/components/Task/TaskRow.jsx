@@ -8,7 +8,7 @@ const Task = () => {
     <div className={classes.task}>
       <div className={classes.taskDetails}>
         <p className={task.isComplete ? classes['task-complete'] : classes['task-notcomplete']}>{task.taskTextTitle}</p>
-        <p className={task.isComplete ? classes['task-complete'] : classes['task-notcomplete']}>{task.taskTextdisc}</p>
+        <p className={task.isComplete ? classes['task-complete'] : classes['task-notcomplete']}>{task.taskTextdesc}</p>
       </div>
       <div className={classes.btns}>
         <button onClick={() => taskDoneHandler(task.id)} className={classes.done}>Done</button>

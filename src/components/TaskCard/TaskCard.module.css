@@ -39,8 +39,9 @@
 .btns,
 .btnsEdit {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 6px;
+  justify-content: space-evenly;
 }
 
 .btnsEdit {

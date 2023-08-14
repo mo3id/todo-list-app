@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './TaskCard.module.css'
 import { useToDoList } from '../../context/context';
 import Modal from '../Modal/Modal';
@@ -7,15 +7,16 @@ import InputField from '../InputField/InputField';
 
 const TaskCard = () => {
 
-  const { tasks, removeTaskFromList, taskDoneHandler, showModal, modalToRemoveIsShow, modalToEditIsShow, selectedTask, hideModal, hideEditModal, showEditModal, EditTask } = useToDoList();
+  const { tasks, removeTaskFromList, taskDoneHandler, showModal, modalToRemoveIsShow, modalToEditIsShow, selectedTask, hideModal, hideEditModal, showEditModal, EditTask, getSelectdTask } = useToDoList();
 
+  const task = getSelectdTask();
 
   // className={classes['task-complete']?"":classes['task-complete']}
   const taskList = tasks?.map(task => (
     <li key={task.id} className={classes.task}>
       <div className={classes.taskDetails}>
         <p className={task.isComplete ? classes['task-complete'] : classes['task-notcomplete']}>{task.taskTextTitle}</p>
-        <p className={task.isComplete ? classes['task-complete'] : classes['task-notcomplete']}>{task.taskTextdisc}</p>
+        <p className={task.isComplete ? classes['task-complete'] : classes['task-notcomplete']}>{task.taskTextdesc}</p>
       </div>
       <div className={classes.btns}>
         <div className={classes.firstBtns}>
@@ -24,12 +25,17 @@ const TaskCard = () => {
             selectedTask(task.id);
             showModal()
           }} className={classes.delete}>Delete</button>
-          <button onClick={showEditModal} className={classes.edit}>Edit</button>
+          <button onClick={() => {
+            selectedTask(task.id);
+            showEditModal()
+          }} className={classes.edit}>Edit</button>
         </div>
         <button onClick={() => taskDoneHandler(task.id)} className={classes.done}>Done</button>
       </div>
     </li>
   ));
+
+  // const [taskTitle, setTaskTitle] = useState(task.taskTextTitle)
 
   return (
     <>
@@ -46,8 +52,8 @@ const TaskCard = () => {
 
         {/* <form onSubmit={(e) => editTaskHandler({ ...selectedTaskData }, e)}> */}
 
-        <InputField className={classes.editInput} id='task_input' label={'Task title'} type='text' />
-        <InputField className={classes.editInput} id='task_input' label={'Task discription'} type='text' />
+        <InputField className={classes.editInput} id='task_input' label={'Task title'} type='text' value={task.taskTextTitle} onChange={(e) => setTextTitle(e.target.value)} />
+        <InputField className={classes.editInput} id='task_input' label={'Task description'} type='text' value={task.taskTextdesc} />
         {/* <button className={classes.addBtn} onClick={addTaskHandler}>+ Add</button> */}
 
         <div className={(classes.btnsEdit)}>
