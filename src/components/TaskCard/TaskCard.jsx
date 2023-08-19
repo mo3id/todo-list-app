@@ -9,6 +9,19 @@ const TaskCard = () => {
 
   const { tasks, removeTaskFromList, taskDoneHandler, showModal, modalToRemoveIsShow, modalToEditIsShow, selectedTask, hideModal, hideEditModal, showEditModal, EditTask, getSelectdTask } = useToDoList();
 
+  // local state --> define task title & description
+  // 2 states || state task : { title , description }
+  // setTask((p)=>({...p,title:e.target.value})) OR setTask((p)=>({...p,description:e.target.value}))
+  // {...rest} ---> get the last object contents , the position is important
+
+  // to update task
+  // 1 - get the task 
+  // 2 - replace task by its index --> findIndex
+  // [{id:0},{id:2},....,{id:30}]
+  // find index ---> task @ id === 2
+  // this at index 1
+  // arr [ 1 ] = newTask
+
   const task = getSelectdTask();
 
   // className={classes['task-complete']?"":classes['task-complete']}
