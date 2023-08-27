@@ -4,12 +4,12 @@ import { useToDoList } from '../../context/context';
 import Modal from '../Modal/Modal';
 import InputField from '../InputField/InputField';
 
-
 const TaskCard = () => {
 
-  const { tasks, removeTaskFromList, taskDoneHandler, showModal, modalToRemoveIsShow, modalToEditIsShow, selectedTask, hideModal, hideEditModal, showEditModal, EditTask, getSelectdTask } = useToDoList();
+  const { tasks, removeTaskFromList, taskDoneHandler, showModal, modalToRemoveIsShow, modalToEditIsShow, selectedTask, hideModal, hideEditModal, showEditModal, EditTask, task, update } = useToDoList();
 
   // local state --> define task title & description
+  // setTask((p)=>({...p,title:e.target.value})) OR setTask((p)=>({...p,description:e.target.value}))
   // 2 states || state task : { title , description }
   // setTask((p)=>({...p,title:e.target.value})) OR setTask((p)=>({...p,description:e.target.value}))
   // {...rest} ---> get the last object contents , the position is important
@@ -22,9 +22,29 @@ const TaskCard = () => {
   // this at index 1
   // arr [ 1 ] = newTask
 
-  const task = getSelectdTask();
+  // const task = getSelectdTask();
+  const [editTask, setEditTask] = useState({
+    title: "",
+    descriotion: ""
+  });
 
-  // className={classes['task-complete']?"":classes['task-complete']}
+
+  useEffect(() => {
+    setEditTask({
+      title: task.taskTextTitle,
+      descriotion: task.taskTextdesc
+    })
+  }, [task])
+
+
+  const editTitle = (e) => {
+    setEditTask((prev) => ({ ...prev, title: e.target.value }))
+  }
+
+  const editDescription = (e) => {
+    setEditTask((prev) => ({ ...prev, descriotion: e.target.value }))
+  }
+
   const taskList = tasks?.map(task => (
     <li key={task.id} className={classes.task}>
       <div className={classes.taskDetails}>
@@ -33,7 +53,6 @@ const TaskCard = () => {
       </div>
       <div className={classes.btns}>
         <div className={classes.firstBtns}>
-
           <button onClick={() => {
             selectedTask(task.id);
             showModal()
@@ -48,8 +67,6 @@ const TaskCard = () => {
     </li>
   ));
 
-  // const [taskTitle, setTaskTitle] = useState(task.taskTextTitle)
-
   return (
     <>
       {modalToRemoveIsShow && <Modal>
@@ -63,14 +80,14 @@ const TaskCard = () => {
       </Modal>}
       {modalToEditIsShow && <Modal>
 
-        {/* <form onSubmit={(e) => editTaskHandler({ ...selectedTaskData }, e)}> */}
-
-        <InputField className={classes.editInput} id='task_input' label={'Task title'} type='text' value={task.taskTextTitle} onChange={(e) => setTextTitle(e.target.value)} />
-        <InputField className={classes.editInput} id='task_input' label={'Task description'} type='text' value={task.taskTextdesc} />
-        {/* <button className={classes.addBtn} onClick={addTaskHandler}>+ Add</button> */}
+        <InputField className={classes.editInput} id='task_input' label={'Task title'} type='text' value={editTask.title} onChange={editTitle} />
+        <InputField className={classes.editInput} id='task_input' label={'Task description'} type='text' value={editTask.descriotion} onChange={editDescription} />
 
         <div className={(classes.btnsEdit)}>
-          <button onClick={EditTask} className={classes.edit}>update</button>
+          <button onClick={() => {
+            update(task.id, editTask);
+            hideEditModal();
+          }} className={classes.edit}>update</button>
           <button onClick={hideEditModal} className={classes.done}>cansel</button>
         </div>
 

@@ -15,6 +15,12 @@ const ToDoListProvider = ({ children }) => {
 
   const [taskId, setTaskId] = useState('');
 
+  const [task, setTask] = useState({
+    id: "",
+    taskTextTitle: "",
+    taskTextdesc: "",
+    isComplete: false
+  });
 
   const getSelectdTask = () => {
     return tasks.find((task) => task.id === taskId);
@@ -22,12 +28,10 @@ const ToDoListProvider = ({ children }) => {
 
   const showModal = () => {
     setmodalToRemoveIsShow(true)
-    console.log(modalToRemoveIsShow)
   }
 
   const showEditModal = () => {
     setmodalToEditIsShow(true)
-    console.log(modalToEditIsShow)
   }
 
   const selectedTask = (id) => {
@@ -64,9 +68,14 @@ const ToDoListProvider = ({ children }) => {
     localStorage.setItem('tasks-list', JSON.stringify(tasks))
   }, [tasks])
 
+  useEffect(() => {
+    const task = getSelectdTask()
+    if (task)
+      setTask(task)
+  }, [taskId])
+
   const createTask = (task) => {
     task.taskTextTitle.length > 3 || task.taskTextdesc.length > 3 ? setTasks([task, ...tasks]) : alert('enter valed task more than 3 letters')
-    console.log(task);
   }
 
   const removeTaskFromList = () => {
@@ -75,12 +84,21 @@ const ToDoListProvider = ({ children }) => {
   };
 
   const EditTask = () => {
-    console.log("edit");
     setmodalToEditIsShow(false);
   };
 
+  const update = (id, edit) => {
+    const index = tasks.findIndex((ele) => ele.id == id);
+    const updatedTask = tasks[index];
+    updatedTask.taskTextdesc = edit.descriotion;
+    updatedTask.taskTextTitle = edit.title;
+    const prevTasks = [...tasks];
+    prevTasks[index] = updatedTask
+    setTasks(prevTasks);
+  }
+
   return (
-    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalToRemoveIsShow, modalToEditIsShow, hideModal, hideEditModal, showModal, showEditModal, selectedTask, EditTask, getSelectdTask }}>
+    <ToDoListContext.Provider value={{ removeTaskFromList, tasks, createTask, taskDoneHandler, modalToRemoveIsShow, modalToEditIsShow, hideModal, hideEditModal, showModal, showEditModal, selectedTask, EditTask, task, update }}>
 
       {children}
 

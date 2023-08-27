@@ -1,7 +1,7 @@
 .task {
   color: #000;
   background-color: #fff;
-  max-width: 25rem;
+  /* max-width: 25rem; */
   margin: auto;
   margin-bottom: 1rem;
   display: flex;
@@ -27,8 +27,11 @@
 }
 
 .taskList {
+  width: 70vw;
   list-style: none;
   padding: 0;
+  margin: 2rem auto;
+  margin-bottom: 0;
 }
 
 .firstBtns {
@@ -52,7 +55,7 @@
 .btns button,
 .btnsEdit button {
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 1.5rem;
   cursor: pointer;
   border: 1px solid #723d71;
 }
@@ -67,8 +70,11 @@
   background-color: #a60aeb;
 }
 
+.taskDetails p {
+  font-size: 2rem;
+}
 .taskDetails p:last-child {
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   color: #000000d6;
 }
 

@@ -5,7 +5,7 @@ import InputField from '../InputField/InputField';
 
 const Header = () => {
 
-  const { createTask, hideModalHandler, showModalHandler, modalToRemoveIsShow,modalToEditIsShow } = useToDoList()
+  const { createTask, hideModalHandler, showModalHandler, modalToRemoveIsShow, modalToEditIsShow } = useToDoList()
 
   const [textTitle, setTextTitle] = useState('');
   const [textDesc, setTextDesc] = useState('');

@@ -1,4 +1,5 @@
 .task_input {
+  font-size: 2rem;
   border: none;
   border-bottom: 1px solid #9752cb;
   padding: 5px;
@@ -9,5 +10,11 @@
 
 .label {
   display: inline-block;
-  min-width: 8rem;
+  /* min-width: 8rem; */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
