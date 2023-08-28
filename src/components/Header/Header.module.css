@@ -31,3 +31,10 @@
   gap: 1rem;
   width: 100%;
 }
+
+@media (max-width: 480px) {
+  .header,
+  .addBtn {
+    font-size: 1.2rem;
+  }
+}

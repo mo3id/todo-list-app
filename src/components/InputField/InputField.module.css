@@ -18,3 +18,9 @@
   flex-direction: column;
   gap: 7px;
 }
+
+@media (max-width: 480px) {
+  .task_input {
+    font-size: 1.2rem;
+  }
+}
